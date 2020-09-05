@@ -37,21 +37,26 @@ module.exports = {
   },
   devtool: isDev ? 'source-map' : false,
   resolve: {
-    extensions: ['.js'],
+    extensions: ['.js', '.css'],
     alias: {
       '@': path.resolve(__dirname, 'src'),
       '@core': path.resolve(__dirname, 'src/core'),
     },
   },
   devServer: {
+    contentBase: './dist',
     port: 3000,
     hot: isDev,
+    hotOnly: isDev
   },
   module: {
     rules: [
+    //   {
+    //     test: /\.html$/,
+    //     loader: 'raw-loader',
+    //   },
       {
         test: /\.s[ac]ss$/i,
-        exclude: /node_modules/,
         use:
 					[
 					  {
@@ -78,7 +83,6 @@ module.exports = {
       template: 'index.html',
       removeComments: isProd,
       collapseWhiteSpace: isProd,
-
     }),
     new CopyPlugin({
       patterns: [
