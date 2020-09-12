@@ -20,6 +20,7 @@ export class DomListener {
 			${method} is not implemented in 
 			${this.name || ''} Component`);
 			}
+			// предотвращяем потерю контекста
 			this[method] = this[method].bind(this);
 			this.$root.on(listener, this[method]);
 		});
